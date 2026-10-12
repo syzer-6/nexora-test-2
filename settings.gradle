@@ -5,6 +5,16 @@ pluginManagement {
         mavenCentral()
     }
 }
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs 'app/libs'
+        }
+    }
+}
 rootProject.name = "Medusa"
 include ':app'
 include ':prdownloader'
