@@ -5,6 +5,11 @@ plugins {
 }
 
 android {
+    repositories {
+        flatDir {
+            dirs "libs"
+        }
+    }
     compileSdkVersion 33
 
     defaultConfig {
