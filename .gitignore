@@ -37,5 +37,3 @@ app/*.keystore
 # Do not publish these in a source-only release.
 app/src/main/jniLibs/**/*.so
 jni/**/*.a
-app/libs/*.aar
-app/libs/*.jar
