@@ -414,17 +414,11 @@ public class MainActivity extends SampActivity {
             openTab(TAB_WORKBENCH);
         });
 
-        btnDonate.setOnClickListener(v -> {
-            openTab(TAB_STORE);
-        });
 
         btnSettings.setOnClickListener(v -> {
             openTab(TAB_SETTINGS);
         });
 
-        btnCredits.setOnClickListener(v -> {
-            openTab(TAB_CREDITS);
-        });
 
         openTab(resolveInitialTab());
     }
@@ -591,11 +585,7 @@ public class MainActivity extends SampActivity {
                 R.id.nav_label_servers,
                 R.id.nav_label_host,
                 R.id.nav_label_files,
-                R.id.nav_label_editor,
-                R.id.nav_label_workbench,
-                R.id.nav_label_donate,
                 R.id.nav_label_settings,
-                R.id.nav_label_credits
         };
 
         int activeLabelColor = getResources().getColor(R.color.launcher_accent_gold_bright);
