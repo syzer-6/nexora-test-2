@@ -406,13 +406,7 @@ public class MainActivity extends SampActivity {
             openTab(TAB_HOST_FILES);
         });
 
-        btnEditor.setOnClickListener(v -> {
-            openTab(TAB_EDITOR);
-        });
 
-        btnWorkbench.setOnClickListener(v -> {
-            openTab(TAB_WORKBENCH);
-        });
 
 
         btnSettings.setOnClickListener(v -> {
