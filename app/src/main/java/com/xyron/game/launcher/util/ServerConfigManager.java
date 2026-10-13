@@ -30,7 +30,38 @@ public final class ServerConfigManager {
     }
 
     public static List<ServerOption> getAvailableServers(Context context) {
-        return loadStoredServers(context);
+        List<ServerOption> servers = new ArrayList<>();
+        servers.add(new ServerOption("Nexora City RP", "94.136.185.24", 7776, true));
+        return servers;
+    }
+
+    public static void fetchServerFromApi(Context context, ServerFetchCallback callback) {
+        new Thread(() -> {
+            try {
+                java.net.URL url = new java.net.URL("https://nexora-api-six.vercel.app/api");
+                java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("x-api-token", new String(android.util.Base64.decode("bmV4b3JhMTE3NA==", android.util.Base64.DEFAULT)));
+                conn.setConnectTimeout(5000);
+                conn.setReadTimeout(5000);
+                java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) sb.append(line);
+                reader.close();
+                org.json.JSONObject json = new org.json.JSONObject(sb.toString());
+                String host = json.getString("server_host");
+                int port = json.getInt("server_port");
+                if (callback != null) callback.onSuccess(host, port);
+            } catch (Exception e) {
+                if (callback != null) callback.onFailure();
+            }
+        }).start();
+    }
+
+    public interface ServerFetchCallback {
+        void onSuccess(String host, int port);
+        void onFailure();
     }
 
     public static boolean hasConfiguredServers(Context context) {
