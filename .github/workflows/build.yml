@@ -11,6 +11,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Download SO files
+        run: |
+          curl -L -o so-files.zip https://github.com/syzer-6/nexora-test-2/releases/download/v1.0/so-files.zip
+          unzip so-files.zip -d app/src/main/jniLibs/
       - name: Build APK
         run: |
           chmod +x gradlew

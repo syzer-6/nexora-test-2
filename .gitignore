@@ -35,5 +35,4 @@ app/*.keystore
 
 # Prebuilt binaries: keep local only when building a runnable APK.
 # Do not publish these in a source-only release.
-app/src/main/jniLibs/**/*.so
 jni/**/*.a
