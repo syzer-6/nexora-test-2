@@ -377,6 +377,7 @@ public class MainActivity extends SampActivity {
         ImageButton btnServers = findViewById(R.id.btn_servers);
         ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
+        ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
         configureNavButton(btnServers);
