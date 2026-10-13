@@ -377,31 +377,17 @@ public class MainActivity extends SampActivity {
         ImageButton btnServers = findViewById(R.id.btn_servers);
         ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
-        ImageButton btnEditor = findViewById(R.id.btn_editor);
-        ImageButton btnWorkbench = findViewById(R.id.btn_workbench);
-        ImageButton btnDonate = findViewById(R.id.btn_donate);
-        ImageButton btnSettings = findViewById(R.id.btn_settings);
-        ImageButton btnCredits = findViewById(R.id.btn_credits);
 
         configureNavButton(btnHome);
         configureNavButton(btnServers);
         configureNavButton(btnHost);
         configureNavButton(btnFiles);
-        configureNavButton(btnEditor);
-        configureNavButton(btnWorkbench);
-        configureNavButton(btnDonate);
         configureNavButton(btnSettings);
-        configureNavButton(btnCredits);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
         configureNavShortcut(findViewById(R.id.nav_item_servers), TAB_SERVERS);
         configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
         configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
-        configureNavShortcut(findViewById(R.id.nav_item_editor), TAB_EDITOR);
-        configureNavShortcut(findViewById(R.id.nav_item_workbench), TAB_WORKBENCH);
-        configureNavShortcut(findViewById(R.id.nav_item_donate), TAB_STORE);
-        configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
-        configureNavShortcut(findViewById(R.id.nav_item_credits), TAB_CREDITS);
         applyRoleNavigation();
 
         btnHome.setOnClickListener(v -> {
@@ -567,11 +553,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
-                R.id.nav_item_editor,
-                R.id.nav_item_workbench,
-                R.id.nav_item_donate,
-                R.id.nav_item_settings,
-                R.id.nav_item_credits
         };
 
         for (int i = 0; i < tabs.length; i++) {
@@ -596,11 +577,6 @@ public class MainActivity extends SampActivity {
                 R.id.btn_servers,
                 R.id.btn_host,
                 R.id.btn_files,
-                R.id.btn_editor,
-                R.id.btn_workbench,
-                R.id.btn_donate,
-                R.id.btn_settings,
-                R.id.btn_credits
         };
 
         int[] items = {
@@ -608,11 +584,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
-                R.id.nav_item_editor,
-                R.id.nav_item_workbench,
-                R.id.nav_item_donate,
-                R.id.nav_item_settings,
-                R.id.nav_item_credits
         };
 
         int[] labels = {
