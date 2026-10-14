@@ -80,6 +80,14 @@ public class HomeFragment extends Fragment {
         }
 
         updateSelectedServer();
+        newPlayButton = root.findViewById(R.id.home_play_button);
+        if (newPlayButton != null) {
+            newPlayButton.setOnClickListener(v -> {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).startGta();
+                }
+            });
+        }
         return root;
     }
 
