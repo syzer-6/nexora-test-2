@@ -208,7 +208,7 @@ public class MainActivity extends SampActivity {
     }
 
     private void setLaunchControlsEnabled(boolean enabled) {
-        View playButton = findViewById(R.id.play_button);
+        
         if (playButton != null) {
             playButton.setEnabled(enabled);
             playButton.setAlpha(enabled ? 1.0f : 0.72f);
