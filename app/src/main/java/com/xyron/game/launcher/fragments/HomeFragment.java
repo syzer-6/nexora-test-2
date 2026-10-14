@@ -25,6 +25,7 @@ public class HomeFragment extends Fragment {
     private static final int NEXT_STEP_CHOOSE_SERVER = 3;
 
     private View playButton;
+    private View newPlayButton;
     private TextView selectServerButton;
     private TextView selectedServerName;
     private TextView selectedServerAddress;
