@@ -39,13 +39,13 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         playButton = root.findViewById(R.id.play_button);
-        selectServerButton = root.findViewById(R.id.select_server_button);
-        selectedServerName = root.findViewById(R.id.selected_server_name);
-        selectedServerAddress = root.findViewById(R.id.selected_server_address);
-        selectedServerHint = root.findViewById(R.id.selected_server_hint);
-        readinessTitle = root.findViewById(R.id.home_readiness_title);
-        readinessBody = root.findViewById(R.id.home_readiness_body);
-        nextStepButton = root.findViewById(R.id.home_next_step_button);
+        
+        
+        
+        
+        
+        
+        
 
         if (playButton != null) {
             playButton.setOnTouchListener(new ButtonAnimator(requireContext(), playButton));
