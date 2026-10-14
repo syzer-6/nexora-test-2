@@ -209,10 +209,7 @@ public class MainActivity extends SampActivity {
 
     private void setLaunchControlsEnabled(boolean enabled) {
         
-        if (playButton != null) {
-            playButton.setEnabled(enabled);
-            playButton.setAlpha(enabled ? 1.0f : 0.72f);
-        }
+
     }
 
     private void launchGameActivity() {
