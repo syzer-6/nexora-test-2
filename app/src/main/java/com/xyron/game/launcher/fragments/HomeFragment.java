@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        playButton = root.findViewById(R.id.play_button);
+        
         
         
         
@@ -69,9 +69,9 @@ public class HomeFragment extends Fragment {
             });
         }
 
-        configureTabShortcut(root, R.id.home_quick_host, MainActivity.TAB_HOST);
-        configureTabShortcut(root, R.id.home_quick_files, MainActivity.TAB_HOST_FILES);
-        configureTabShortcut(root, R.id.home_quick_settings, MainActivity.TAB_SETTINGS);
+        
+        
+        
 
         if (nextStepButton != null) {
             nextStepButton.setOnTouchListener(new ButtonAnimator(requireContext(), nextStepButton));
