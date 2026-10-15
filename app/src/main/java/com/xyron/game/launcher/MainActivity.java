@@ -426,8 +426,6 @@ public class MainActivity extends SampActivity {
             openTab(TAB_SETTINGS);
         });
 
-        });
-
         openTab(resolveInitialTab());
     }
 
