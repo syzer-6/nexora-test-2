@@ -20,7 +20,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.xyron.game.R;
 import com.xyron.game.BuildConfig;
 import com.xyron.game.launcher.data.Config;
-import com.xyron.game.launcher.fragments.CreditsFragment;
 import com.xyron.game.launcher.fragments.DonateFragment;
 import com.xyron.game.launcher.fragments.EditorFragment;
 import com.xyron.game.launcher.fragments.HomeFragment;
@@ -55,7 +54,6 @@ public class MainActivity extends SampActivity {
     public static final int TAB_WORKBENCH = 5;
     public static final int TAB_STORE = 6;
     public static final int TAB_SETTINGS = 7;
-    public static final int TAB_CREDITS = 8;
 
     public int[] tabImages = {
             R.drawable.ic_home_off,
@@ -66,7 +64,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_tools_off,
             R.drawable.ic_shop_off,
             R.drawable.ic_settings_off,
-            R.drawable.ic_credits_off
     };
 
     public int[] tabSelectedImages = {
@@ -78,7 +75,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_tools_on,
             R.drawable.ic_shop_on,
             R.drawable.ic_settings_on,
-            R.drawable.ic_credits_on
     };
 
     public static ArrayList<SAMPServerInfo> mServersFavouriteList = new ArrayList<>();
@@ -378,7 +374,6 @@ public class MainActivity extends SampActivity {
         ImageButton btnWorkbench = findViewById(R.id.btn_workbench);
         ImageButton btnDonate = findViewById(R.id.btn_donate);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
-        ImageButton btnCredits = findViewById(R.id.btn_credits);
 
         configureNavButton(btnHome);
         configureNavButton(btnServers);
@@ -388,7 +383,6 @@ public class MainActivity extends SampActivity {
         configureNavButton(btnWorkbench);
         configureNavButton(btnDonate);
         configureNavButton(btnSettings);
-        configureNavButton(btnCredits);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
         configureNavShortcut(findViewById(R.id.nav_item_servers), TAB_SERVERS);
@@ -398,7 +392,6 @@ public class MainActivity extends SampActivity {
         configureNavShortcut(findViewById(R.id.nav_item_workbench), TAB_WORKBENCH);
         configureNavShortcut(findViewById(R.id.nav_item_donate), TAB_STORE);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
-        configureNavShortcut(findViewById(R.id.nav_item_credits), TAB_CREDITS);
         applyRoleNavigation();
 
         btnHome.setOnClickListener(v -> {
@@ -433,8 +426,6 @@ public class MainActivity extends SampActivity {
             openTab(TAB_SETTINGS);
         });
 
-        btnCredits.setOnClickListener(v -> {
-            openTab(TAB_CREDITS);
         });
 
         openTab(resolveInitialTab());
@@ -484,8 +475,6 @@ public class MainActivity extends SampActivity {
                     return new DonateFragment();
                 case TAB_SETTINGS:
                     return new SettingsFragment();
-                case TAB_CREDITS:
-                    return new CreditsFragment();
                 default:
                     return new HomeFragment();
             }
@@ -520,7 +509,6 @@ public class MainActivity extends SampActivity {
                 TAB_WORKBENCH,
                 TAB_STORE,
                 TAB_SETTINGS,
-                TAB_CREDITS
         };
     }
 
@@ -556,7 +544,6 @@ public class MainActivity extends SampActivity {
                 TAB_WORKBENCH,
                 TAB_STORE,
                 TAB_SETTINGS,
-                TAB_CREDITS
         };
 
         int[] items = {
@@ -568,7 +555,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_workbench,
                 R.id.nav_item_donate,
                 R.id.nav_item_settings,
-                R.id.nav_item_credits
         };
 
         for (int i = 0; i < tabs.length; i++) {
@@ -597,7 +583,6 @@ public class MainActivity extends SampActivity {
                 R.id.btn_workbench,
                 R.id.btn_donate,
                 R.id.btn_settings,
-                R.id.btn_credits
         };
 
         int[] items = {
@@ -609,7 +594,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_workbench,
                 R.id.nav_item_donate,
                 R.id.nav_item_settings,
-                R.id.nav_item_credits
         };
 
         int[] labels = {
@@ -621,7 +605,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_label_workbench,
                 R.id.nav_label_donate,
                 R.id.nav_label_settings,
-                R.id.nav_label_credits
         };
 
         int activeLabelColor = getResources().getColor(R.color.launcher_accent_gold_bright);

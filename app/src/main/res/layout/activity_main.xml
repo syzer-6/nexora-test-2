@@ -257,35 +257,6 @@
                 android:textColor="@color/launcher_text_muted"
                 android:textSize="7.2sp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/nav_item_credits"
-            android:layout_width="58dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/btn_credits"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:background="@drawable/launcher_nav_button_idle"
-                android:contentDescription="Creditos"
-                android:padding="10dp"
-                android:src="@drawable/ic_credits_off" />
-
-            <TextView
-                android:id="@+id/nav_label_credits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="Creditos"
-                android:textColor="@color/launcher_text_muted"
-                android:textSize="7.2sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <com.xyron.game.launcher.util.ViewPagerWithoutSwipe
