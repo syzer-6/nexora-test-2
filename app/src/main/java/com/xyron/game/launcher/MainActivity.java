@@ -20,14 +20,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.xyron.game.R;
 import com.xyron.game.BuildConfig;
 import com.xyron.game.launcher.data.Config;
-import com.xyron.game.launcher.fragments.DonateFragment;
 import com.xyron.game.launcher.fragments.EditorFragment;
 import com.xyron.game.launcher.fragments.HomeFragment;
 import com.xyron.game.launcher.fragments.HostFragment;
 import com.xyron.game.launcher.fragments.HostFilesFragment;
 import com.xyron.game.launcher.fragments.ServersFragment;
 import com.xyron.game.launcher.fragments.SettingsFragment;
-import com.xyron.game.launcher.fragments.WorkbenchFragment;
 import com.xyron.game.launcher.util.ButtonAnimator;
 import com.xyron.game.launcher.util.ConfigValidator;
 import com.xyron.game.launcher.util.GameDataVerifier;
@@ -51,8 +49,6 @@ public class MainActivity extends SampActivity {
     public static final int TAB_HOST = 2;
     public static final int TAB_HOST_FILES = 3;
     public static final int TAB_EDITOR = 4;
-    public static final int TAB_WORKBENCH = 5;
-    public static final int TAB_STORE = 6;
     public static final int TAB_SETTINGS = 7;
 
     public int[] tabImages = {
@@ -61,8 +57,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_host_off,
             R.drawable.ic_files_off,
             R.drawable.ic_editor_off,
-            R.drawable.ic_tools_off,
-            R.drawable.ic_shop_off,
             R.drawable.ic_settings_off,
     };
 
@@ -72,8 +66,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_host_on,
             R.drawable.ic_files_on,
             R.drawable.ic_editor_on,
-            R.drawable.ic_tools_on,
-            R.drawable.ic_shop_on,
             R.drawable.ic_settings_on,
     };
 
@@ -371,8 +363,6 @@ public class MainActivity extends SampActivity {
         ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
         ImageButton btnEditor = findViewById(R.id.btn_editor);
-        ImageButton btnWorkbench = findViewById(R.id.btn_workbench);
-        ImageButton btnDonate = findViewById(R.id.btn_donate);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
@@ -380,8 +370,6 @@ public class MainActivity extends SampActivity {
         configureNavButton(btnHost);
         configureNavButton(btnFiles);
         configureNavButton(btnEditor);
-        configureNavButton(btnWorkbench);
-        configureNavButton(btnDonate);
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
@@ -389,8 +377,6 @@ public class MainActivity extends SampActivity {
         configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
         configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
         configureNavShortcut(findViewById(R.id.nav_item_editor), TAB_EDITOR);
-        configureNavShortcut(findViewById(R.id.nav_item_workbench), TAB_WORKBENCH);
-        configureNavShortcut(findViewById(R.id.nav_item_donate), TAB_STORE);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
         applyRoleNavigation();
 
@@ -412,14 +398,6 @@ public class MainActivity extends SampActivity {
 
         btnEditor.setOnClickListener(v -> {
             openTab(TAB_EDITOR);
-        });
-
-        btnWorkbench.setOnClickListener(v -> {
-            openTab(TAB_WORKBENCH);
-        });
-
-        btnDonate.setOnClickListener(v -> {
-            openTab(TAB_STORE);
         });
 
         btnSettings.setOnClickListener(v -> {
@@ -467,10 +445,6 @@ public class MainActivity extends SampActivity {
                     return new HostFilesFragment();
                 case TAB_EDITOR:
                     return new EditorFragment();
-                case TAB_WORKBENCH:
-                    return new WorkbenchFragment();
-                case TAB_STORE:
-                    return new DonateFragment();
                 case TAB_SETTINGS:
                     return new SettingsFragment();
                 default:
@@ -504,8 +478,6 @@ public class MainActivity extends SampActivity {
                 TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_EDITOR,
-                TAB_WORKBENCH,
-                TAB_STORE,
                 TAB_SETTINGS,
         };
     }
@@ -539,8 +511,6 @@ public class MainActivity extends SampActivity {
                 TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_EDITOR,
-                TAB_WORKBENCH,
-                TAB_STORE,
                 TAB_SETTINGS,
         };
 
@@ -550,8 +520,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_editor,
-                R.id.nav_item_workbench,
-                R.id.nav_item_donate,
                 R.id.nav_item_settings,
         };
 
@@ -578,8 +546,6 @@ public class MainActivity extends SampActivity {
                 R.id.btn_host,
                 R.id.btn_files,
                 R.id.btn_editor,
-                R.id.btn_workbench,
-                R.id.btn_donate,
                 R.id.btn_settings,
         };
 
@@ -589,8 +555,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_editor,
-                R.id.nav_item_workbench,
-                R.id.nav_item_donate,
                 R.id.nav_item_settings,
         };
 
@@ -600,8 +564,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_label_host,
                 R.id.nav_label_files,
                 R.id.nav_label_editor,
-                R.id.nav_label_workbench,
-                R.id.nav_label_donate,
                 R.id.nav_label_settings,
         };
 
