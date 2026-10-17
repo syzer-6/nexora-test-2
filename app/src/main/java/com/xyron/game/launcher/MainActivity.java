@@ -23,7 +23,6 @@ import com.xyron.game.launcher.data.Config;
 import com.xyron.game.launcher.fragments.HomeFragment;
 import com.xyron.game.launcher.fragments.HostFragment;
 import com.xyron.game.launcher.fragments.HostFilesFragment;
-import com.xyron.game.launcher.fragments.ServersFragment;
 import com.xyron.game.launcher.fragments.SettingsFragment;
 import com.xyron.game.launcher.util.ButtonAnimator;
 import com.xyron.game.launcher.util.ConfigValidator;
@@ -44,14 +43,12 @@ import java.util.List;
 
 public class MainActivity extends SampActivity {
     public static final int TAB_HOME = 0;
-    public static final int TAB_SERVERS = 1;
     public static final int TAB_HOST = 2;
     public static final int TAB_HOST_FILES = 3;
     public static final int TAB_SETTINGS = 7;
 
     public int[] tabImages = {
             R.drawable.ic_home_off,
-            R.drawable.ic_servers_off,
             R.drawable.ic_host_off,
             R.drawable.ic_files_off,
             R.drawable.ic_settings_off,
@@ -59,7 +56,6 @@ public class MainActivity extends SampActivity {
 
     public int[] tabSelectedImages = {
             R.drawable.ic_home_on,
-            R.drawable.ic_servers_on,
             R.drawable.ic_host_on,
             R.drawable.ic_files_on,
             R.drawable.ic_settings_on,
@@ -117,7 +113,6 @@ public class MainActivity extends SampActivity {
         if (selectedServer == null || !selectedServer.isValid()) {
             return LaunchPreparation.blocked(
                     "Selecione um servidor valido antes de jogar.",
-                    TAB_SERVERS
             );
         }
 
@@ -355,19 +350,16 @@ public class MainActivity extends SampActivity {
 
         // BotÃµes do menu
         ImageButton btnHome = findViewById(R.id.btn_home);
-        ImageButton btnServers = findViewById(R.id.btn_servers);
         ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
-        configureNavButton(btnServers);
         configureNavButton(btnHost);
         configureNavButton(btnFiles);
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
-        configureNavShortcut(findViewById(R.id.nav_item_servers), TAB_SERVERS);
         configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
         configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
@@ -377,9 +369,6 @@ public class MainActivity extends SampActivity {
             openTab(TAB_HOME);
         });
 
-        btnServers.setOnClickListener(v -> {
-            openTab(TAB_SERVERS);
-        });
 
         btnHost.setOnClickListener(v -> {
             openTab(TAB_HOST);
@@ -427,8 +416,6 @@ public class MainActivity extends SampActivity {
             switch (tabIndex) {
                 case TAB_HOME:
                     return new HomeFragment();
-                case TAB_SERVERS:
-                    return new ServersFragment();
                 case TAB_HOST:
                     return new HostFragment();
                 case TAB_HOST_FILES:
@@ -462,7 +449,6 @@ public class MainActivity extends SampActivity {
     private int[] resolveActiveTabs() {
         return new int[] {
                 TAB_HOME,
-                TAB_SERVERS,
                 TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_SETTINGS,
@@ -494,7 +480,6 @@ public class MainActivity extends SampActivity {
     private void applyRoleNavigation() {
         int[] tabs = {
                 TAB_HOME,
-                TAB_SERVERS,
                 TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_SETTINGS,
@@ -502,7 +487,6 @@ public class MainActivity extends SampActivity {
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_settings,
@@ -535,7 +519,6 @@ public class MainActivity extends SampActivity {
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_settings,
@@ -543,7 +526,6 @@ public class MainActivity extends SampActivity {
 
         int[] labels = {
                 R.id.nav_label_home,
-                R.id.nav_label_servers,
                 R.id.nav_label_host,
                 R.id.nav_label_files,
                 R.id.nav_label_settings,

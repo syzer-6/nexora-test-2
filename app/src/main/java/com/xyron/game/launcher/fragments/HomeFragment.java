@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).openTab(
                             ServerConfigManager.hasConfiguredServers(requireContext())
-                                    ? MainActivity.TAB_SERVERS
+                                    ? MainActivity.TAB_SETTINGS
                                     : MainActivity.TAB_SETTINGS
                     );
                 }
@@ -220,7 +220,7 @@ public class HomeFragment extends Fragment {
         }
 
         if (nextStepAction == NEXT_STEP_CHOOSE_SERVER) {
-            activity.openTab(MainActivity.TAB_SERVERS);
+            activity.openTab(MainActivity.TAB_SETTINGS);
             return;
         }
 
