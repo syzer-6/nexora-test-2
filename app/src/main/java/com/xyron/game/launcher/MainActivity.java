@@ -433,7 +433,6 @@ public class MainActivity extends SampActivity {
                     return new HostFragment();
                 case TAB_HOST_FILES:
                     return new HostFilesFragment();
-                    return new SettingsFragment();
                 default:
                     return new HomeFragment();
             }
