@@ -112,7 +112,7 @@ public class MainActivity extends SampActivity {
                 ServerConfigManager.getSelectedServer(getApplicationContext());
         if (selectedServer == null || !selectedServer.isValid()) {
             return LaunchPreparation.blocked(
-                    "Selecione um servidor valido antes de jogar."
+                    "Selecione um servidor valido antes de jogar.", MainActivity.TAB_SETTINGS
             );
         }
 
@@ -511,7 +511,6 @@ public class MainActivity extends SampActivity {
     private void updateSelectedTab(int selected) {
         int[] buttons = {
                 R.id.btn_home,
-                R.id.btn_servers,
                 R.id.btn_host,
                 R.id.btn_files,
                 R.id.btn_settings,
