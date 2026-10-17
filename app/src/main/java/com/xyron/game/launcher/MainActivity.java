@@ -112,7 +112,7 @@ public class MainActivity extends SampActivity {
                 ServerConfigManager.getSelectedServer(getApplicationContext());
         if (selectedServer == null || !selectedServer.isValid()) {
             return LaunchPreparation.blocked(
-                    "Selecione um servidor valido antes de jogar.",
+                    "Selecione um servidor valido antes de jogar."
             );
         }
 
