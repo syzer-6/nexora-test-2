@@ -20,7 +20,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.xyron.game.R;
 import com.xyron.game.BuildConfig;
 import com.xyron.game.launcher.data.Config;
-import com.xyron.game.launcher.fragments.EditorFragment;
 import com.xyron.game.launcher.fragments.HomeFragment;
 import com.xyron.game.launcher.fragments.HostFragment;
 import com.xyron.game.launcher.fragments.HostFilesFragment;
@@ -48,7 +47,6 @@ public class MainActivity extends SampActivity {
     public static final int TAB_SERVERS = 1;
     public static final int TAB_HOST = 2;
     public static final int TAB_HOST_FILES = 3;
-    public static final int TAB_EDITOR = 4;
     public static final int TAB_SETTINGS = 7;
 
     public int[] tabImages = {
@@ -56,7 +54,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_servers_off,
             R.drawable.ic_host_off,
             R.drawable.ic_files_off,
-            R.drawable.ic_editor_off,
             R.drawable.ic_settings_off,
     };
 
@@ -65,7 +62,6 @@ public class MainActivity extends SampActivity {
             R.drawable.ic_servers_on,
             R.drawable.ic_host_on,
             R.drawable.ic_files_on,
-            R.drawable.ic_editor_on,
             R.drawable.ic_settings_on,
     };
 
@@ -362,21 +358,18 @@ public class MainActivity extends SampActivity {
         ImageButton btnServers = findViewById(R.id.btn_servers);
         ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
-        ImageButton btnEditor = findViewById(R.id.btn_editor);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
         configureNavButton(btnServers);
         configureNavButton(btnHost);
         configureNavButton(btnFiles);
-        configureNavButton(btnEditor);
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
         configureNavShortcut(findViewById(R.id.nav_item_servers), TAB_SERVERS);
         configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
         configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
-        configureNavShortcut(findViewById(R.id.nav_item_editor), TAB_EDITOR);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
         applyRoleNavigation();
 
@@ -396,9 +389,6 @@ public class MainActivity extends SampActivity {
             openTab(TAB_HOST_FILES);
         });
 
-        btnEditor.setOnClickListener(v -> {
-            openTab(TAB_EDITOR);
-        });
 
         btnSettings.setOnClickListener(v -> {
             openTab(TAB_SETTINGS);
@@ -443,9 +433,6 @@ public class MainActivity extends SampActivity {
                     return new HostFragment();
                 case TAB_HOST_FILES:
                     return new HostFilesFragment();
-                case TAB_EDITOR:
-                    return new EditorFragment();
-                case TAB_SETTINGS:
                     return new SettingsFragment();
                 default:
                     return new HomeFragment();
@@ -477,7 +464,6 @@ public class MainActivity extends SampActivity {
                 TAB_SERVERS,
                 TAB_HOST,
                 TAB_HOST_FILES,
-                TAB_EDITOR,
                 TAB_SETTINGS,
         };
     }
@@ -510,7 +496,6 @@ public class MainActivity extends SampActivity {
                 TAB_SERVERS,
                 TAB_HOST,
                 TAB_HOST_FILES,
-                TAB_EDITOR,
                 TAB_SETTINGS,
         };
 
@@ -519,7 +504,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
-                R.id.nav_item_editor,
                 R.id.nav_item_settings,
         };
 
@@ -545,7 +529,6 @@ public class MainActivity extends SampActivity {
                 R.id.btn_servers,
                 R.id.btn_host,
                 R.id.btn_files,
-                R.id.btn_editor,
                 R.id.btn_settings,
         };
 
@@ -554,7 +537,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_item_servers,
                 R.id.nav_item_host,
                 R.id.nav_item_files,
-                R.id.nav_item_editor,
                 R.id.nav_item_settings,
         };
 
@@ -563,7 +545,6 @@ public class MainActivity extends SampActivity {
                 R.id.nav_label_servers,
                 R.id.nav_label_host,
                 R.id.nav_label_files,
-                R.id.nav_label_editor,
                 R.id.nav_label_settings,
         };
 
