@@ -43,9 +43,9 @@ import java.util.List;
 
 public class MainActivity extends SampActivity {
     public static final int TAB_HOME = 0;
-    public static final int TAB_HOST = 2;
-    public static final int TAB_HOST_FILES = 3;
-    public static final int TAB_SETTINGS = 7;
+    public static final int TAB_HOST = 1;
+    public static final int TAB_HOST_FILES = 2;
+    public static final int TAB_SETTINGS = 3;
 
     public int[] tabImages = {
             R.drawable.ic_home_off,
