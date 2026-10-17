@@ -21,8 +21,6 @@ import com.xyron.game.R;
 import com.xyron.game.BuildConfig;
 import com.xyron.game.launcher.data.Config;
 import com.xyron.game.launcher.fragments.HomeFragment;
-import com.xyron.game.launcher.fragments.HostFragment;
-import com.xyron.game.launcher.fragments.HostFilesFragment;
 import com.xyron.game.launcher.fragments.SettingsFragment;
 import com.xyron.game.launcher.util.ButtonAnimator;
 import com.xyron.game.launcher.util.ConfigValidator;
@@ -360,7 +358,6 @@ public class MainActivity extends SampActivity {
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
-        configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
         configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
         applyRoleNavigation();
@@ -371,7 +368,6 @@ public class MainActivity extends SampActivity {
 
 
         btnHost.setOnClickListener(v -> {
-            openTab(TAB_HOST);
         });
 
         btnFiles.setOnClickListener(v -> {
@@ -416,7 +412,6 @@ public class MainActivity extends SampActivity {
             switch (tabIndex) {
                 case TAB_HOME:
                     return new HomeFragment();
-                case TAB_HOST:
                     return new HostFragment();
                 case TAB_HOST_FILES:
                     return new HostFilesFragment();
@@ -449,7 +444,6 @@ public class MainActivity extends SampActivity {
     private int[] resolveActiveTabs() {
         return new int[] {
                 TAB_HOME,
-                TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_SETTINGS,
         };
@@ -480,14 +474,12 @@ public class MainActivity extends SampActivity {
     private void applyRoleNavigation() {
         int[] tabs = {
                 TAB_HOME,
-                TAB_HOST,
                 TAB_HOST_FILES,
                 TAB_SETTINGS,
         };
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_settings,
         };
@@ -518,7 +510,6 @@ public class MainActivity extends SampActivity {
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_host,
                 R.id.nav_item_files,
                 R.id.nav_item_settings,
         };
