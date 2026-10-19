@@ -313,6 +313,15 @@ public class MainActivity extends SampActivity {
             pager.setCurrentItem(pagerPosition);
         }
         updateSelectedTab(tabIndex);
+        int navVisibility = (tabIndex == TAB_SETTINGS) ? android.view.View.GONE : android.view.View.VISIBLE;
+        View navHome = findViewById(R.id.nav_item_home);
+        View navSettings = findViewById(R.id.nav_item_settings);
+        View btnHome = findViewById(R.id.btn_home);
+        View btnSettings = findViewById(R.id.btn_settings);
+        if (navHome != null) navHome.setVisibility(navVisibility);
+        if (navSettings != null) navSettings.setVisibility(navVisibility);
+        if (btnHome != null) btnHome.setVisibility(navVisibility);
+        if (btnSettings != null) btnSettings.setVisibility(navVisibility);
     }
 
     public void changeTheme(boolean theme) {

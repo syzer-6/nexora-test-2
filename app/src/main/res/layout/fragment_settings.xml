@@ -123,10 +123,9 @@
 
                         <TextView
                             android:id="@+id/player_name_value"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="42dp"
-                            android:layout_weight="1"
-                            android:layout_marginTop="0dp"
+                                                        android:layout_marginTop="12dp"
                             android:background="@drawable/launcher_field_surface_dark"
                             android:ellipsize="end"
                             android:fontFamily="@font/montserrat_bold"
