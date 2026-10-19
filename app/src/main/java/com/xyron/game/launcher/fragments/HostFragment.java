@@ -468,7 +468,7 @@ public class HostFragment extends Fragment {
 
     private void openFilesTab() {
         if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).openTab(MainActivity.TAB_HOST_FILES);
+            ((MainActivity) getActivity()).openTab(MainActivity.TAB_SETTINGS);
         }
     }
 

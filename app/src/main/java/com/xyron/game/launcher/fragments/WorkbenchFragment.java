@@ -82,8 +82,8 @@ public class WorkbenchFragment extends Fragment {
                 "Cria um .cfg base dentro da pasta /server.",
                 "ex: eventos"
         ));
-        bindAction(root.findViewById(R.id.button_workbench_open_files), () -> openTab(MainActivity.TAB_HOST_FILES));
-        bindAction(root.findViewById(R.id.button_workbench_open_host), () -> openTab(MainActivity.TAB_HOST));
+        bindAction(root.findViewById(R.id.button_workbench_open_files), () -> openTab(MainActivity.TAB_SETTINGS));
+        bindAction(root.findViewById(R.id.button_workbench_open_host), () -> openTab(MainActivity.TAB_HOME));
         bindAction(root.findViewById(R.id.button_workbench_refresh_logs), this::refreshAll);
         bindAction(root.findViewById(R.id.button_workbench_create_backup), this::promptCreateBackup);
 
