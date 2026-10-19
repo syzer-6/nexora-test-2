@@ -51,10 +51,20 @@ public class SettingsFragment extends Fragment {
         nicknameValue = view.findViewById(R.id.player_name_value);
         TextView editProfileButton = view.findViewById(R.id.button_edit_profile);
         TextView reinstallButton = view.findViewById(R.id.button_reinstall);
+        TextView backButton = view.findViewById(R.id.button_back_home);
 
         openSettingsFile();
         configureChatSpinner(view);
         loadNickname();
+
+        if (backButton != null) {
+            backButton.setOnTouchListener(new ButtonAnimator(getContext(), backButton));
+            backButton.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    getActivity().onBackPressed();
+                }
+            });
+        }
 
         if (editProfileButton != null) {
             editProfileButton.setOnTouchListener(new ButtonAnimator(getContext(), editProfileButton));
@@ -64,9 +74,9 @@ public class SettingsFragment extends Fragment {
 
         if (reinstallButton != null) {
             if (isLauncherRole()) {
-                reinstallButton.setText("Abrir download do Game");
+                reinstallButton.setText("Open game download");
             } else if (isToolsRole()) {
-                reinstallButton.setText("Download fica no Game");
+                reinstallButton.setText("Download in Game app");
             }
             reinstallButton.setOnTouchListener(new ButtonAnimator(getContext(), reinstallButton));
             reinstallButton.setOnClickListener(v -> handleDataAction());
@@ -204,21 +214,21 @@ public class SettingsFragment extends Fragment {
         }
 
         String nickname = readIniValue("client", "name", "");
-        nicknameValue.setText(nickname.isEmpty() ? "Nenhum nome definido" : nickname);
+        nicknameValue.setText(nickname.isEmpty() ? "No name defined" : nickname);
     }
 
     private void saveNickname(String nickname) {
         if (nickname.isEmpty()) {
-            Toast.makeText(getContext(), "Digite um nome para salvar no jogo.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Enter a name to save.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!saveIniValue("client", "name", nickname)) {
-            Toast.makeText(getContext(), "Nao foi possivel salvar o nome.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Could not save the name.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Toast.makeText(getContext(), "Nome salvo no launcher e no arquivo do jogo.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Name saved successfully.", Toast.LENGTH_SHORT).show();
         loadNickname();
     }
 
@@ -233,7 +243,7 @@ public class SettingsFragment extends Fragment {
         }
 
         if (isToolsRole()) {
-            Toast.makeText(getContext(), "Baixe ou reinstale a data pelo APK News RP.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Download or reinstall via News RP APK.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -252,7 +262,7 @@ public class SettingsFragment extends Fragment {
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(getContext(), "Instale o APK News RP para baixar a data.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Install the News RP APK to download data.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -344,7 +354,7 @@ public class SettingsFragment extends Fragment {
                         ? input.getText().toString().trim()
                         : "";
                 if (nickname.isEmpty()) {
-                    Toast.makeText(getContext(), "Digite um nome para salvar no jogo.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Enter a name to save.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 saveNickname(nickname);
