@@ -279,11 +279,9 @@ public class MainActivity extends SampActivity {
 
         // BotÃµes do menu
         ImageButton btnHome = findViewById(R.id.btn_home);
-        ImageButton btnFiles = findViewById(R.id.btn_files);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
-        configureNavButton(btnFiles);
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
@@ -296,9 +294,6 @@ public class MainActivity extends SampActivity {
 
 
 
-        btnFiles.setOnClickListener(v -> {
-            openTab(TAB_SETTINGS);
-        });
 
 
         btnSettings.setOnClickListener(v -> {
