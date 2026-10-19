@@ -60,9 +60,10 @@ public class SettingsFragment extends Fragment {
         if (backButton != null) {
             backButton.setOnTouchListener(new ButtonAnimator(getContext(), backButton));
             backButton.setOnClickListener(v -> {
-                if (getActivity() != null) {
-                    getActivity().getSupportFragmentManager()
-                        .popBackStack();
+                if (getActivity() instanceof com.xyron.game.launcher.MainActivity) {
+                    ((com.xyron.game.launcher.MainActivity) getActivity()).openTab(
+                        com.xyron.game.launcher.MainActivity.TAB_HOME
+                    );
                 }
             });
         }
