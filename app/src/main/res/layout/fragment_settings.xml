@@ -93,9 +93,8 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@drawable/home_server_card_surface"
                         android:gravity="top"
                         android:minHeight="156dp"
@@ -151,60 +150,6 @@
                             android:textSize="10sp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_server_card_surface"
-                        android:gravity="top"
-                        android:minHeight="156dp"
-                        android:orientation="vertical"
-                        android:padding="18dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:text="Servers"
-                            android:textColor="@android:color/white"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:text="Add in IP:PORT format. Max 5."
-                            android:textColor="@color/launcher_text_muted"
-                            android:textSize="8.5sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:background="@drawable/launcher_console_surface"
-                            android:fontFamily="@font/montserrat_medium"
-                            android:padding="12dp"
-                            android:text="After saving, the IP appears in the Servers tab."
-                            android:textColor="@color/launcher_text_secondary"
-                            android:textSize="9sp" />
-
-                        <TextView
-                            android:id="@+id/button_add_server_shortcut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="38dp"
-                            android:layout_marginTop="12dp"
-                            android:background="@drawable/home_action_secondary"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:gravity="center"
-                            android:minWidth="146dp"
-                            android:paddingStart="18dp"
-                            android:paddingEnd="18dp"
-                            android:text="Add server"
-                            android:textColor="@android:color/white"
-                            android:textSize="10sp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

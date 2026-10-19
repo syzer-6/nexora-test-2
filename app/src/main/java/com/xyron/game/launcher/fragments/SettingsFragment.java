@@ -50,7 +50,6 @@ public class SettingsFragment extends Fragment {
         mVoipSwitch = view.findViewById(R.id.voip_switch);
         nicknameValue = view.findViewById(R.id.player_name_value);
         TextView editProfileButton = view.findViewById(R.id.button_edit_profile);
-        TextView addServerButton = view.findViewById(R.id.button_add_server_shortcut);
         TextView reinstallButton = view.findViewById(R.id.button_reinstall);
 
         openSettingsFile();
@@ -62,10 +61,6 @@ public class SettingsFragment extends Fragment {
             editProfileButton.setOnClickListener(v -> showNicknameDialog());
         }
 
-        if (addServerButton != null) {
-            addServerButton.setOnTouchListener(new ButtonAnimator(getContext(), addServerButton));
-            addServerButton.setOnClickListener(v -> showAddServerDialog());
-        }
 
         if (reinstallButton != null) {
             if (isLauncherRole()) {
@@ -308,83 +303,6 @@ public class SettingsFragment extends Fragment {
         return "tools".equals(BuildConfig.XYRON_APK_ROLE);
     }
 
-    private void showAddServerDialog() {
-        if (getContext() == null) {
-            return;
-        }
-
-        View dialogView = LayoutInflater.from(requireContext()).inflate(
-                R.layout.dialog_add_server,
-                null,
-                false
-        );
-        EditText input = dialogView.findViewById(R.id.dialog_server_input);
-        TextView cancelButton = dialogView.findViewById(R.id.dialog_server_cancel);
-        TextView saveButton = dialogView.findViewById(R.id.dialog_server_save);
-        TextView limitText = dialogView.findViewById(R.id.dialog_server_limit);
-
-        if (limitText != null) {
-            limitText.setText("Voce pode salvar ate "
-                    + ServerConfigManager.getMaxSavedServers()
-                    + " servidores.");
-        }
-
-        AlertDialog dialog = new AlertDialog.Builder(requireContext())
-                .setView(dialogView)
-                .create();
-        dialog.setCancelable(true);
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
-
-        if (cancelButton != null) {
-            cancelButton.setOnTouchListener(new ButtonAnimator(getContext(), cancelButton));
-            cancelButton.setOnClickListener(v -> dialog.dismiss());
-        }
-
-        if (saveButton != null) {
-            saveButton.setOnTouchListener(new ButtonAnimator(getContext(), saveButton));
-            saveButton.setOnClickListener(v -> {
-                String rawAddress = input != null && input.getText() != null
-                        ? input.getText().toString().trim()
-                        : "";
-
-                if (!ServerConfigManager.isValidRawAddress(rawAddress)) {
-                    Toast.makeText(
-                            getContext(),
-                            "Use o formato IP:PORTA, por exemplo 127.0.0.1:7777.",
-                            Toast.LENGTH_LONG
-                    ).show();
-                    return;
-                }
-
-                ServerConfigManager.ServerOption option =
-                        ServerConfigManager.addOrUpdateServer(requireContext(), rawAddress);
-                if (!option.isValid()) {
-                    Toast.makeText(
-                            getContext(),
-                            "Voce pode salvar no maximo "
-                                    + ServerConfigManager.getMaxSavedServers()
-                                    + " servidores.",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                    return;
-                }
-
-                Toast.makeText(
-                        getContext(),
-                        "Servidor adicionado. Ele ja aparece na aba Servidores.",
-                        Toast.LENGTH_SHORT
-                ).show();
-                dialog.dismiss();
-            });
-        }
-
-        dialog.show();
-        if (input != null) {
-            input.requestFocus();
-        }
-    }
 
     private void showNicknameDialog() {
         if (getContext() == null) {
