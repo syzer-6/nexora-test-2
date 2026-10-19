@@ -21,13 +21,10 @@ import com.xyron.game.R;
 import com.xyron.game.BuildConfig;
 import com.xyron.game.launcher.data.Config;
 import com.xyron.game.launcher.fragments.HomeFragment;
-import com.xyron.game.launcher.fragments.HostFragment;
-import com.xyron.game.launcher.fragments.HostFilesFragment;
 import com.xyron.game.launcher.fragments.SettingsFragment;
 import com.xyron.game.launcher.util.ButtonAnimator;
 import com.xyron.game.launcher.util.ConfigValidator;
 import com.xyron.game.launcher.util.GameDataVerifier;
-import com.xyron.game.launcher.util.HostShellEngine;
 import com.xyron.game.launcher.util.SampQueryApi;
 import com.xyron.game.launcher.util.SAMPServerInfo;
 import com.xyron.game.launcher.util.ServerConfigManager;
@@ -43,21 +40,15 @@ import java.util.List;
 
 public class MainActivity extends SampActivity {
     public static final int TAB_HOME = 0;
-    public static final int TAB_HOST = 1;
-    public static final int TAB_HOST_FILES = 2;
-    public static final int TAB_SETTINGS = 3;
+    public static final int TAB_SETTINGS = 1;
 
     public int[] tabImages = {
             R.drawable.ic_home_off,
-            R.drawable.ic_host_off,
-            R.drawable.ic_files_off,
             R.drawable.ic_settings_off,
     };
 
     public int[] tabSelectedImages = {
             R.drawable.ic_home_on,
-            R.drawable.ic_host_on,
-            R.drawable.ic_files_on,
             R.drawable.ic_settings_on,
     };
 
@@ -116,42 +107,14 @@ public class MainActivity extends SampActivity {
             );
         }
 
-        boolean localHostSelected = isLocalHostOption(selectedServer);
-        if (shouldAllowImmediateLocalLaunch(selectedServer)) {
-            return LaunchPreparation.ready();
-        }
-
-        boolean selectedOnline = false;
-        String localHostFailureMessage = null;
-
-        if (localHostSelected) {
-            if (!HostShellEngine.isHostReady(getApplicationContext())
-                    && !HostShellEngine.isHostRunning(getApplicationContext())
-                    && !HostShellEngine.isHostStarting(getApplicationContext())) {
-                HostShellEngine.CommandResult bootResult =
-                        HostShellEngine.bootHost(getApplicationContext());
-                if (bootResult == null || !bootResult.success) {
-                    localHostFailureMessage = extractHostFailureMessage(bootResult);
-                }
-            }
-
-            selectedOnline = HostShellEngine.isHostReady(getApplicationContext())
-                    || HostShellEngine.isHostRunning(getApplicationContext())
-                    || HostShellEngine.isHostStarting(getApplicationContext());
-        }
-
-        if (!selectedOnline) {
-            selectedOnline = isServerReachable(selectedServer);
-        }
+        boolean selectedOnline = isServerReachable(selectedServer);
 
         if (selectedOnline) {
             return LaunchPreparation.ready();
         }
 
         return LaunchPreparation.blocked(
-                localHostSelected && localHostFailureMessage != null
-                        ? localHostFailureMessage
-                        : "O servidor selecionado nao respondeu agora. Edite ou escolha outro no launcher.",
+                "O servidor selecionado nao respondeu agora. Edite ou escolha outro no launcher.",
                 -1
         );
     }
@@ -255,40 +218,6 @@ public class MainActivity extends SampActivity {
         }
     }
 
-    private boolean shouldAllowImmediateLocalLaunch(ServerConfigManager.ServerOption option) {
-        if (option == null || !option.isValid()) {
-            return false;
-        }
-
-        if (!isLocalHostOption(option)) {
-            return false;
-        }
-
-        return HostShellEngine.isHostReady(getApplicationContext())
-                || HostShellEngine.isHostRunning(getApplicationContext())
-                || HostShellEngine.isHostStarting(getApplicationContext());
-    }
-
-    private boolean isLocalHostOption(ServerConfigManager.ServerOption option) {
-        if (option == null || !option.isValid()) {
-            return false;
-        }
-        boolean localLoopback = "127.0.0.1".equals(option.host) || "localhost".equalsIgnoreCase(option.host);
-        return localLoopback && option.port == 7777;
-    }
-
-    private String extractHostFailureMessage(HostShellEngine.CommandResult result) {
-        if (result == null || result.output == null || result.output.trim().isEmpty()) {
-            return "O host local nao respondeu agora. Abra a aba Host para revisar a base e tentar de novo.";
-        }
-
-        String message = result.output.trim();
-        int lineBreak = message.indexOf('\n');
-        if (lineBreak > 0) {
-            message = message.substring(0, lineBreak).trim();
-        }
-        return message;
-    }
 
     private static final class LaunchPreparation {
         final boolean launchGame;
@@ -350,18 +279,14 @@ public class MainActivity extends SampActivity {
 
         // BotÃµes do menu
         ImageButton btnHome = findViewById(R.id.btn_home);
-        ImageButton btnHost = findViewById(R.id.btn_host);
         ImageButton btnFiles = findViewById(R.id.btn_files);
         ImageButton btnSettings = findViewById(R.id.btn_settings);
 
         configureNavButton(btnHome);
-        configureNavButton(btnHost);
         configureNavButton(btnFiles);
         configureNavButton(btnSettings);
 
         configureNavShortcut(findViewById(R.id.nav_item_home), TAB_HOME);
-        configureNavShortcut(findViewById(R.id.nav_item_host), TAB_HOST);
-        configureNavShortcut(findViewById(R.id.nav_item_files), TAB_HOST_FILES);
         configureNavShortcut(findViewById(R.id.nav_item_settings), TAB_SETTINGS);
         applyRoleNavigation();
 
@@ -370,12 +295,9 @@ public class MainActivity extends SampActivity {
         });
 
 
-        btnHost.setOnClickListener(v -> {
-            openTab(TAB_HOST);
-        });
 
         btnFiles.setOnClickListener(v -> {
-            openTab(TAB_HOST_FILES);
+            openTab(TAB_SETTINGS);
         });
 
 
@@ -416,10 +338,6 @@ public class MainActivity extends SampActivity {
             switch (tabIndex) {
                 case TAB_HOME:
                     return new HomeFragment();
-                case TAB_HOST:
-                    return new HostFragment();
-                case TAB_HOST_FILES:
-                    return new HostFilesFragment();
                 case TAB_SETTINGS:
                         return new SettingsFragment();
                 default:
@@ -449,8 +367,6 @@ public class MainActivity extends SampActivity {
     private int[] resolveActiveTabs() {
         return new int[] {
                 TAB_HOME,
-                TAB_HOST,
-                TAB_HOST_FILES,
                 TAB_SETTINGS,
         };
     }
@@ -480,15 +396,11 @@ public class MainActivity extends SampActivity {
     private void applyRoleNavigation() {
         int[] tabs = {
                 TAB_HOME,
-                TAB_HOST,
-                TAB_HOST_FILES,
                 TAB_SETTINGS,
         };
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_host,
-                R.id.nav_item_files,
                 R.id.nav_item_settings,
         };
 
@@ -511,22 +423,16 @@ public class MainActivity extends SampActivity {
     private void updateSelectedTab(int selected) {
         int[] buttons = {
                 R.id.btn_home,
-                R.id.btn_host,
-                R.id.btn_files,
                 R.id.btn_settings,
         };
 
         int[] items = {
                 R.id.nav_item_home,
-                R.id.nav_item_host,
-                R.id.nav_item_files,
                 R.id.nav_item_settings,
         };
 
         int[] labels = {
                 R.id.nav_label_home,
-                R.id.nav_label_host,
-                R.id.nav_label_files,
                 R.id.nav_label_settings,
         };
 
