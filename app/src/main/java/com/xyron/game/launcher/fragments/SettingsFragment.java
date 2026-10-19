@@ -61,7 +61,8 @@ public class SettingsFragment extends Fragment {
             backButton.setOnTouchListener(new ButtonAnimator(getContext(), backButton));
             backButton.setOnClickListener(v -> {
                 if (getActivity() != null) {
-                    getActivity().onBackPressed();
+                    getActivity().getSupportFragmentManager()
+                        .popBackStack();
                 }
             });
         }
