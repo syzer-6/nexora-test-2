@@ -2133,8 +2133,37 @@ public class SAMP extends com.raiferoleplay.game.game.SAMP implements CustomKeyb
         return option.getAddress();
     }
 
+    private android.os.Handler mapUpdateHandler = new android.os.Handler();
+    private Runnable mapUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (webMiniMap != null && framewebMiniMap != null &&
+                framewebMiniMap.getVisibility() == View.VISIBLE) {
+                try {
+                    float[] pos = getPlayerPlacementSnapshot();
+                    if (pos != null && pos.length >= 2) {
+                        final float x = pos[0];
+                        final float y = pos[1];
+                        runOnUiThread(() -> webMiniMap.evaluateJavascript(
+                            "if(window.updatePlayerPos) window.updatePlayerPos(" + x + "," + y + ");", null));
+                    }
+                } catch (Exception e) {}
+                mapUpdateHandler.postDelayed(this, 500);
+            }
+        }
+    };
+
     private void showMapOverlayInternal() {
-        hideMapOverlayInternal();
+        if (framewebMiniMap == null || webMiniMap == null) return;
+        if (!mapOverlayConfigured) {
+            mapOverlayConfigured = true;
+            configureRuntimeOverlay(webMiniMap, MAP_OVERLAY_URL);
+        }
+        framewebMiniMap.bringToFront();
+        framewebMiniMap.setVisibility(View.VISIBLE);
+        webMiniMap.setVisibility(View.VISIBLE);
+        updateRuntimeOverlayExecutionState();
+        mapUpdateHandler.postDelayed(mapUpdateRunnable, 1000);
     }
 
     private void hideMapOverlayInternal() {
